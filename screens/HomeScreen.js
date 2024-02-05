@@ -22,8 +22,6 @@ const HomeScreen = () => {
       }}>
       <Text style={{fontSize: 25}}>Animation</Text>
       <Button title="Button" onPress={clickOnButton} />
-      <Button title="Button" onPress={clickOnButton} />
-      <Button title="Button" onPress={clickOnButton} />
     </Pressable>
   );
 };

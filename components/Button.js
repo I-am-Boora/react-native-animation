@@ -6,7 +6,7 @@ const Button = ({title, onPress}) => {
     <Pressable
       onPress={() => onPress(title)}
       style={{
-        backgroundColor: 'grey',
+        backgroundColor: '#b9d7d9',
         width: '100%',
         height: 50,
         justifyContent: 'center',

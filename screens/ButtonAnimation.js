@@ -1,47 +1,47 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  createAnimatedComponent,
+  withRepeat,
+  withTiming,
 } from 'react-native-reanimated';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 const ButtonAnimation = () => {
-  const scale = useSharedValue(0);
-  const handleAnimation = () => {
-    scale.value = withSpring(scale.value == 0 ? 1 : 0);
+  const [isLike, setIsLike] = useState(false);
+  const scaleLike = useSharedValue(1);
+
+  const handleLikeButton = () => {
+    setIsLike(!isLike);
+    scaleLike.value = withRepeat(withTiming(2), 2, true);
   };
-  const animatedStyle = useAnimatedStyle(() => {
+  const likeButtonStyle = useAnimatedStyle(() => {
     return {
-      transform: [{scale: scale.value}],
+      transform: [{scale: scaleLike.value}],
     };
   });
+  const AnimatedPressable = Animated.createAnimatedComponent(Icon);
   return (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <Animated.View
-        style={[
-          {
-            width: 100,
-            height: 100,
-            borderRadius: 100,
-            backgroundColor: 'black',
-            marginTop: 20,
-          },
-          animatedStyle,
-        ]}></Animated.View>
-      <Pressable
-        onPress={handleAnimation}
-        style={{
-          backgroundColor: 'orange',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 44,
-          width: '40%',
-          borderRadius: 20,
-          marginTop: 200,
-        }}>
-        <Text style={{fontSize: 18}}>Ok</Text>
-      </Pressable>
+    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+      {isLike ? (
+        <AnimatedPressable
+          name="heart"
+          size={100}
+          color={'red'}
+          onPress={handleLikeButton}
+          style={likeButtonStyle}
+        />
+      ) : (
+        <AnimatedPressable
+          name="heart-outline"
+          size={100}
+          color={'red'}
+          onPress={handleLikeButton}
+          style={likeButtonStyle}
+        />
+      )}
     </View>
   );
 };

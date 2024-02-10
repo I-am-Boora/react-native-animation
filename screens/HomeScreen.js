@@ -11,6 +11,12 @@ const HomeScreen = () => {
       navigation.navigate('button');
     }
   };
+  const clickOnScroll = buttonTitle => {
+    console.log('button presed', `${buttonTitle}`);
+    if (buttonTitle === 'Scroll') {
+      navigation.navigate('scroll');
+    }
+  };
   return (
     <Pressable
       style={{
@@ -22,6 +28,7 @@ const HomeScreen = () => {
       }}>
       <Text style={{fontSize: 25}}>Animation</Text>
       <Button title="Button" onPress={clickOnButton} />
+      <Button title="Scroll" onPress={clickOnScroll} />
     </Pressable>
   );
 };

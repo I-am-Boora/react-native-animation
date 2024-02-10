@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import ButtonAnimation from './screens/ButtonAnimation';
+import ScrollAnimation from './screens/ScrollAnimation';
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -18,6 +19,11 @@ const App = () => {
         <Stack.Screen
           name="button"
           component={ButtonAnimation}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="scroll"
+          component={ScrollAnimation}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
